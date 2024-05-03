@@ -1,0 +1,63 @@
+{
+  "author": "Christian Bromann <christian@saucelabs.com>",
+  "license": "MIT",
+  "name": "cucumber-boilerplate",
+  "version": "2.0.0",
+  "description": "Boilerplate project to run WebdriverIO tests with Cucumber",
+  "homepage": "https://github.com/webdriverio/cucumber-boilerplate",
+  "type": "module",
+  "contributors": [
+    "W. van Kuipers <github@pwnd.nl>"
+  ],
+  "repository": {
+    "type": "git",
+    "getUrl": "https://github.com/webdriverio/cucumber-boilerplate.git"
+  },
+  "bugs": {
+    "getUrl": "https://github.com/webdriverio/cucumber-boilerplate/issues"
+  },
+  "keywords": [
+    "wdio",
+    "webdriver",
+    "webdriverio",
+    "cucumber",
+    "test",
+    "boilerplate",
+    "selenium"
+  ],
+  "scripts": {
+    "clean": "read -p \"Are you sure you want to clean the project? [y/n] \" REPLY; if [[ $REPLY =~ ^[Yy]$ ]]; then rm -R .git .github demo-app test .codeclimate.yml .travis.yml jest.json wdio.BUILD.conf.js src/features/**; fi",
+    "test": "run-s test:*",
+    "test:lint": "eslint 'src/**/*.ts' 'test/**/*.js!(setup.js)'",
+    "test:unit": "jest --config=jest.config.cjs --detectOpenHandles",
+    "test:features": "wdio run wdio.BUILD.conf.ts",
+    "wdio": "wdio run wdio.BUILD.conf.ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "@wdio/cli": "workspace:*",
+    "@wdio/config": "workspace:*",
+    "@wdio/cucumber-framework": "workspace:*",
+    "@wdio/globals": "workspace:*",
+    "@wdio/local-runner": "workspace:*",
+    "@wdio/spec-reporter": "workspace:*",
+    "@wdio/static-server-service": "workspace:*",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-wdio": "^8.24.12",
+    "http-server": "^14.1.1",
+    "jest": "^29.7.0",
+    "jest-circus": "^29.7.0",
+    "npm-run-all2": "^6.1.2",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "webdriverio": "workspace:*"
+  },
+  "peerDependencies": {
+    "@cucumber/cucumber": "^10.3.1"
+  }
+}

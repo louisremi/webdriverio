@@ -35,6 +35,9 @@ interface IsDisplayedParams {
     <div id="notVisible" style="width: 10px; height: 10px; visibility: hidden"></div>
     <div id="zeroOpacity" style="width: 10px; height: 10px; opacity: 0"></div>
     <div id="notInViewport" style="width: 10px; height: 10px; position:fixed; top: 999999; left: 999999"></div>
+    <div id="overflowHidden" style="width: 0px; height: 0px; overflow: hidden;">Hello World!</div>
+    <div id="zeroWidth" style="width: 0px; height: 10px; overflow-x: hidden;">Hello World!</div>
+    <div id="zeroHeight" style="width: 10px; height: 0px; overflow-y: hidden;">Hello World!</div>
     :isDisplayed.js
     it('should detect if an element is displayed', async () => {
         elem = await $('#notExisting');
@@ -64,8 +67,20 @@ interface IsDisplayedParams {
         elem = await $('#notInViewport');
         isDisplayed = await elem.isDisplayed();
         console.log(isDisplayed); // outputs: true
+
+        elem = await $('#overflowHidden');
+        isDisplayed = await elem.isDisplayed();
+        console.log(isDisplayed); // outputs: false
+
+        elem = await $('#zeroWidth');
+        isDisplayed = await elem.isDisplayed();
+        console.log(isDisplayed); // outputs: false
+
+        elem = await $('#zeroHeight');
+        isDisplayed = await elem.isDisplayed();
+        console.log(isDisplayed); // outputs: false
     });
-    isDisplayedWithinViewport.js
+    :isDisplayedWithinViewport.js
     it('should detect if an element is visible within the viewport', async () => {
         let isDisplayedInViewport = await $('#notDisplayed').isDisplayed({ withinViewport: true });
         console.log(isDisplayedInViewport); // outputs: false
